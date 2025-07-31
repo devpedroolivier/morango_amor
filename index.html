@@ -17,7 +17,7 @@
     <h1 class="text-4xl sm:text-5xl font-bold text-red-600 mb-4">Transforme Morangos em Joias da Confeitaria</h1>
     <p class="text-lg max-w-2xl mx-auto mb-6">Aprenda 3 receitas exclusivas de Morango do Amor com recheios, caldas e acabamentos incríveis — perfeitas para vender, presentear ou se deliciar!</p>
     <img src="capa_ebook_morango.png" alt="Capa do eBook Morango do Amor" class="mx-auto w-48 rounded-xl shadow-2xl border border-white mb-6" />
-    <a href="https://buy.stripe.com/test_00w6oIejbaqfbKq40R9Zm00" class="bg-red-600 hover:bg-red-700 text-white px-10 py-4 rounded-full text-lg font-semibold shadow-lg transition">Quero Baixar por R$8,99</a>
+    <button onclick="checkout()" class="bg-red-600 hover:bg-red-700 text-white px-10 py-4 rounded-full text-lg font-semibold shadow-lg transition">Quero Baixar por R$8,99</button>
   </section>
 
   <!-- O QUE TEM NO PDF -->
@@ -48,7 +48,6 @@
           <div class="text-3xl mb-2">📸</div>
           <h3 class="text-lg font-semibold mb-1">Resultado Final Inspirador</h3>
           <p class="text-gray-700 text-sm">Foto real do doce pronto para você visualizar o resultado final e se inspirar.</p>
-
         </div>
 
         <div class="bg-pink-50 rounded-xl p-6 shadow">
@@ -71,11 +70,26 @@
   <section class="py-20 px-6 bg-red-600 text-white text-center">
     <h2 class="text-3xl font-bold mb-4">Receba agora o seu eBook por apenas R$8,99</h2>
     <p class="text-lg mb-6">Aprenda as técnicas, surpreenda com o visual e conquiste pelo sabor. Comece agora!</p>
-    <a href="https://buy.stripe.com/test_00w6oIejbaqfbKq40R9Zm00" class="bg-white text-red-600 hover:text-red-700 px-10 py-4 rounded-full text-lg font-semibold shadow-lg transition">Quero Garantir o Meu</a>
+    <button onclick="checkout()" class="bg-white text-red-600 hover:text-red-700 px-10 py-4 rounded-full text-lg font-semibold shadow-lg transition">Quero Garantir o Meu</button>
   </section>
 
   <footer class="text-center text-sm py-8 text-gray-500 bg-white">
     &copy; 2025 Morango do Amor. Todos os direitos reservados.
   </footer>
+
+  <script>
+    async function checkout() {
+      const res = await fetch("https://morango.posolutionstech.com.br/create-checkout-session", {
+        method: "POST"
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert("Erro ao redirecionar para o Stripe.");
+      }
+    }
+  </script>
+
 </body>
 </html>
