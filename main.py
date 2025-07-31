@@ -1,6 +1,7 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 import stripe
 import os
 from dotenv import load_dotenv
@@ -22,6 +23,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Frontend estático
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 # 📦 Endpoint para criar a sessão de pagamento
 @app.post("/create-checkout-session")
