@@ -99,7 +99,32 @@
         alert("Erro ao redirecionar para o Stripe.");
       }
     }
+
+    // ⏳ Contador regressivo de 5 minutos
+    function startCountdown(durationInSeconds) {
+      let remaining = durationInSeconds;
+      const countdownEl = document.getElementById("countdown");
+
+      const interval = setInterval(() => {
+        const minutes = Math.floor(remaining / 60).toString().padStart(2, "0");
+        const seconds = (remaining % 60).toString().padStart(2, "0");
+        countdownEl.textContent = `${minutes}:${seconds}`;
+        
+        if (remaining <= 0) {
+          clearInterval(interval);
+          countdownEl.textContent = "Expirado!";
+        }
+
+        remaining--;
+      }, 1000);
+    }
+
+    // Inicia o contador ao carregar a página (5 minutos)
+    window.addEventListener("DOMContentLoaded", () => {
+      startCountdown(5 * 60);
+    });
   </script>
+
 
 </body>
 </html>
