@@ -44,17 +44,19 @@ async def create_checkout_session():
             line_items=[{
                 "price_data": {
                     "currency": "brl",
+                    "unit_amount": 899,  # R$8,99 em centavos
                     "product_data": {
                         "name": "eBook Morango do Amor",
-                        "description": "3 receitas especiais com brigadeiro e caramelo rosé",
+                        "description": "3 receitas com recheios cremosos, caldas brilhantes e acabamento gourmet — incluindo brigadeiro de maracujá e caramelo rosé.",
+                        "images": ["https://morango.posolutionstech.com.br/static/capa_ebook_morango.png"]  # URL pública da imagem
                     },
-                    "unit_amount": 899,
                 },
                 "quantity": 1,
             }],
-            success_url="https://morango.posolutionstech.com.br/sucesso.html",
+            success_url="https://morango.posolutionstech.com.br/sucesso",
             cancel_url="https://morango.posolutionstech.com.br",
         )
+
         return JSONResponse({"url": session.url})
     except Exception as e:
         print("❌ Stripe Error:", str(e))
