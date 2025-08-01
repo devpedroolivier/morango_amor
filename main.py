@@ -53,7 +53,7 @@ async def create_checkout_session():
                 },
                 "quantity": 1,
             }],
-            success_url="https://morango.posolutionstech.com.br/sucesso",
+            success_url="https://morango.posolutionstech.com.br/success.html",
             cancel_url="https://morango.posolutionstech.com.br",
         )
 
