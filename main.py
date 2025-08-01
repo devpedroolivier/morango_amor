@@ -30,9 +30,9 @@ def serve_index():
     return FileResponse("static/index.html")
 
 # Rota para o sucesso (sucesso.html)
-@app.get("/sucess.html")
+@app.get("/success.html")
 def serve_sucesso():
-    return FileResponse("static/sucess.html")
+    return FileResponse("static/success.html")
 
 # Rota do Stripe
 @app.post("/create-checkout-session")
